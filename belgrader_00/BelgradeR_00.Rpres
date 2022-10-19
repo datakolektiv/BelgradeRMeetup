@@ -1,0 +1,241 @@
+BelgradeR Meetup :: New Series :: #00
+========================================================
+author: Goran S. Milovanović
+date: Wed 19 Oct 2022
+autosize: true
+<p>&nbsp;</p>
+![](_img/DK_Logo_White_150.png)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+# Welcome!!!
+
+## Why are we here today?
+
+- To reconnect, meet old friends and make new ones!
+- To remind ourselves how cool R is and talk about its future.
+- To study some recent developments in R.
+- To discuss the future of [BelgradeR](https://www.meetup.com/belgrader).
+- To announce a forthcoming free [Intro to R course](http://datakolektiv.com/app_direct/uvodr) with [Startit](https://startit.rs) and [DataKolektiv](http://www.datakolektiv.com/app_direct/DataKolektivServer) (and see who wants to take part in volunteering to teach it!)
+- Networking (i.e. Party!)
+
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+# R is getting more and more popular!
+
+### Source: The PYPL PopularitY of Programming Language Index
+
+The [PYPL PopularitY of Programming Language Index](https://pypl.github.io/PYPL.html) is created by analyzing how often language tutorials are searched on Google.
+
+Dataset: [Kaggle](https://www.kaggle.com/datasets/muhammadkhalid/most-popular-programming-languages-since-2004)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+```{r, echo = FALSE, width = 1300}
+data_set <- read.csv("_data/Most Popular Programming Languages from 2004 to 2022.csv",
+                     header = TRUE,
+                     check.names = FALSE,
+                     stringsAsFactors = FALSE)
+knitr::kable(data_set[1:6, 1:10])
+```
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+<p>&nbsp;</p>
+
+```{r, echo=FALSE, fig.width=15}
+library(tidyverse)
+plot_frame <- data_set %>% 
+  dplyr::select(Date, R)
+plot_frame$month <- sapply(plot_frame$Date, 
+                           function(x) {
+                             strsplit(x, split = " ")[[1]][1]})
+plot_frame$year <- sapply(plot_frame$Date, 
+                           function(x) {
+                             strsplit(x, split = " ")[[1]][2]})
+plot_frame$month <- sapply(plot_frame$month, function(x) {
+  which(month.name == x)
+})
+plot_frame$month <- ifelse(nchar(plot_frame$month) == 1,
+                           paste0("0", plot_frame$month),
+                           plot_frame$month)
+plot_frame$Date <- paste0(plot_frame$year, "-", plot_frame$month)
+ggplot(plot_frame, aes(x = Date, y = R)) + 
+  geom_path(size = .25, group = 1, color = "blue") +
+  geom_point(size = .5, fill = "blue") + 
+  scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
+  ggtitle("PYPL Index: R") + 
+  ylab("PYPL Index") +
+  theme_bw() + 
+  theme(panel.border = element_blank()) + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  theme(plot.title = element_text(hjust = .5, size = 12))
+```
+
+BelgradeR #00 Wed 19 Oct 2022 :: Startit, BGD
+========================================================
+
+<p>&nbsp;</p>
+
+```{r, echo=FALSE, fig.width=15}
+plot_frame <- data_set %>% 
+  dplyr::select(Date, 
+                R, 
+                Python, 
+                Java, 
+                JavaScript, 
+                Rust, 
+                `C/C++`, 
+                `C#`,
+                Go,
+                Julia,
+                Matlab,
+                PHP,
+                Scala,
+                Lua,
+                Ruby)
+plot_frame <- plot_frame %>% 
+  pivot_longer(cols = -Date,
+               names_to = "Language",
+               values_to = "Index")
+plot_frame$month <- sapply(plot_frame$Date, 
+                           function(x) {
+                             strsplit(x, split = " ")[[1]][1]})
+plot_frame$year <- sapply(plot_frame$Date, 
+                           function(x) {
+                             strsplit(x, split = " ")[[1]][2]})
+plot_frame$month <- sapply(plot_frame$month, function(x) {
+  which(month.name == x)
+})
+plot_frame$month <- ifelse(nchar(plot_frame$month) == 1,
+                           paste0("0", plot_frame$month),
+                           plot_frame$month)
+plot_frame$Date <- paste0(plot_frame$year, "-", plot_frame$month)
+ggplot(plot_frame, aes(x = Date, y = Index, 
+                       color = Language,
+                       fill = Language)) + 
+  geom_path(size = .25, group = 1) +
+  geom_point(size = .5) + 
+  scale_x_discrete(guide = guide_axis(check.overlap = TRUE)) +
+  facet_wrap(~Language) + 
+  ggtitle("PYPL Index: 2004 - 2022.") + 
+  ylab("PYPL Index") +
+  theme_bw() +
+  theme(panel.grid.major.x = element_blank()) + 
+  theme(panel.grid.major.y = element_blank()) +
+  theme(panel.border = element_blank()) + 
+  theme(axis.text.x = element_text(angle = 90, size = 6)) + 
+  theme(plot.title = element_text(hjust = .5, size = 12)) + 
+  theme(strip.background = element_blank()) + 
+  theme(legend.position = "none") + 
+  theme(axis.ticks.x = element_blank())
+```
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+# Our R Scene
+
+- [BelgradeR](https://www.meetup.com/belgrader/), 2016, mainly Kovac (founder) & Milovanovic w. support from [Data Science Serbia](https://datascience.rs/)
+- Several Intro to R courses w. Startit in Belgrade, Novi Sad, and online
+- [R-Ladies Belgrade meetups](https://www.meetup.com/rladies-belgrade/), Tatjana Kecojevic & Friends
+- [SatRdays](https://belgrade2018.satrdays.org/), Belgrade, 2018, MNT, Branko Kovac
+- Milovanovic presents his [work in R with Wikidata @eRum 2018, Budapest](https://www.youtube.com/watch?v=R4dKyqNyrL8)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+# Our R Scene
+
+- Milovanovic [@MilanoR, 2019: Information Retrieval: Semantic Web Technologies and Wikidata from R](https://github.com/datakolektiv/MilanoR2019)
+- Kovac and Milovanovic members of the programme committee @Rum 2020, Milano
+- Milovanovic [@eRum 2020, Milano: Semantic Web in R for Data Scientists](https://github.com/datakolektiv/e-Rum2020_SemanticWeb)
+
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/StartitGoran.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/IntroR-Startit-1.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_1.jpeg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_2.jpeg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_3.jpeg)
+
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/R-Ladies_Meetup_20190911_1.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/DubaiBrankoGoran.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_4.jpeg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/NoviSad.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/eRumBudapest.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_5.jpeg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/IntroR-Startit-1.jpg)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/milanoR.png)
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_6.jpeg)
+
+
+BelgradeR #00 Wed 19 Oct 2022
+========================================================
+
+![](_img/BelgradeR_7.jpeg)
+
+
+
+
+
+
