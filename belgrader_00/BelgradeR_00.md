@@ -83,6 +83,7 @@ BelgradeR #00 Wed 19 Oct 2022
 - Milovanovic [@MilanoR, 2019: Information Retrieval: Semantic Web Technologies and Wikidata from R](https://github.com/datakolektiv/MilanoR2019)
 - Kovac and Milovanovic members of the programme committee @Rum 2020, Milano
 - Milovanovic [@eRum 2020, Milano: Semantic Web in R for Data Scientists](https://github.com/datakolektiv/e-Rum2020_SemanticWeb)
+- [Sister Analyst](https://sisteranalyst.org)
 
 
 BelgradeR #00 Wed 19 Oct 2022
@@ -104,11 +105,6 @@ BelgradeR #00 Wed 19 Oct 2022
 ========================================================
 
 ![](_img/BelgradeR_2.jpeg)
-
-BelgradeR #00 Wed 19 Oct 2022
-========================================================
-
-![](_img/BelgradeR_3.jpeg)
 
 
 BelgradeR #00 Wed 19 Oct 2022
