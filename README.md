@@ -5,4 +5,4 @@ This is a GitHub repo of the [BelgradeR Meetup](https://www.meetup.com/BelgradeR
 
 ![](_img/BelgradeR_Oct2022.png)
 
-The repository is hosted at [DataKolektiv](https://github.com/datakolektiv); how many, contributors maybe many and we are open to collaboration with anyone of good will and good R skills in the local community. 
+The repository is hosted at [DataKolektiv](https://github.com/datakolektiv); how many, contributors may be many and diverse. We are open to collaboration with anyone of good will and good R skills in the local community. 
