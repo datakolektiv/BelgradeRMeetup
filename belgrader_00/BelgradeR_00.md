@@ -1,4 +1,4 @@
-BelgradeR Meetup :: New Series :: #00
+BelgradeR Meetup #00
 ========================================================
 author: Goran S. Milovanović
 date: Wed 19 Oct 2022
