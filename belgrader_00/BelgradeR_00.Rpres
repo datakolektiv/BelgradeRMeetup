@@ -82,7 +82,7 @@ ggplot(plot_frame, aes(x = Date, y = R)) +
   theme(plot.title = element_text(hjust = .5, size = 12))
 ```
 
-BelgradeR #00 Wed 19 Oct 2022 :: Startit, BGD
+BelgradeR #00 Wed 19 Oct 2022
 ========================================================
 
 <p>&nbsp;</p>

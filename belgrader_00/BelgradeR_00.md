@@ -57,7 +57,7 @@ BelgradeR #00 Wed 19 Oct 2022
 
 ![plot of chunk unnamed-chunk-2](BelgradeR_00-figure/unnamed-chunk-2-1.png)
 
-BelgradeR #00 Wed 19 Oct 2022 :: Startit, BGD
+BelgradeR #00 Wed 19 Oct 2022
 ========================================================
 
 <p>&nbsp;</p>
